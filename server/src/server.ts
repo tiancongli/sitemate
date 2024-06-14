@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 interface Issue {
     id: string;
@@ -56,7 +58,7 @@ app.delete('/issues/:id', (req: Request, res: Response) => {
     }
 });
 
-// For testing, get all issues
+// Get all issues
 app.get('/issues', (_: Request, res: Response) => {
     res.status(200).send(issues);
 });
